@@ -1,43 +1,48 @@
 # dotfiles
-My MacOS dotfiles setup
 
-Here are the steps to re-create this on another machine
+My macOS dotfiles, managed with [chezmoi](https://www.chezmoi.io/).
 
-Step 1: install oh-my-bash
-This will allow changes to bash themes
+## Bootstrap a new machine
 
+### 1. Install Homebrew
+
+```bash
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
-cd ~/
+
+### 2. Install oh-my-bash
+
+The `.bashrc` uses oh-my-bash with the `minimal-gh` theme and the `git` and `bashmarks` plugins. Install it before applying dotfiles since the installer overwrites `~/.bashrc`.
+
+```bash
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh)"
 ```
 
-Step 2: clone gruvbox
-This is the theme for vim that I like 
+### 3. Install gruvbox (vim color theme)
 
-```
-cd ~/
+```bash
 git clone https://github.com/morhetz/gruvbox.git ~/.vim/pack/default/start/gruvbox
 ```
 
-Step 3: clone vim-polyglot
-This will enable syntax highlighting in vim for a variety of languages
+### 4. Install vim-polyglot (optional, syntax highlighting)
 
-```
-cd ~/
+```bash
 git clone --depth 1 https://github.com/sheerun/vim-polyglot ~/.vim/pack/plugins/start/vim-polyglot
 ```
 
-Step 4: download dotfiles and replace old dot files with symlinks
-This will clone the contents of this repo and set up the new dotfiles
+### 5. Install chezmoi and apply dotfiles
 
-This has not been tested yet:
-```
-cd ~/
-git clone https://github.com/mkmiecik14/dotfiles.git
-cp .bashrc dotfiles/backups/.bashrc_backup
-cp .vimrc dotfiles/backups/.vimrc_backup
-ln -s dotfiles/.bashrc ~/.bashrc
-ln -s dotfiles/.vimrc ~/.vimrc
+```bash
+brew install chezmoi
+chezmoi init --apply mkmiecik14
 ```
 
+---
 
+## Managed files
+
+| File | Description |
+|------|-------------|
+| `.bashrc` | Shell config — oh-my-bash, theme, plugins, aliases |
+| `.vimrc` | Vim config — gruvbox theme, line numbers, 80-char column |
+| `.gitconfig` | Git identity and preferences |

@@ -142,3 +142,8 @@ source "$OSH"/oh-my-bash.sh
 # Example aliases
 # alias bashconfig="mate ~/.bashrc"
 # alias ohmybash="mate ~/.oh-my-bash"
+export PATH=~/.npm-global/bin:$PATH
+
+# included to make claude recognized by PATH
+export PATH="$HOME/.local/bin:$PATH"
+
